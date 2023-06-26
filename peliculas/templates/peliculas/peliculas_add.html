@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+<body>
+    <div style=" text-align: center;">
+        <h2>Formulario CRUD para peliculas</h2><br>
+
+        <form action="peliculasAdd" method="POST">
+            {% csrf_token %}
+
+            <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula"></pre>
+            <pre>Genero:             <select name="genero">
+                {% for g in genero %}
+                    <option value="{{g.id_genero}}">{{g.genero}}</option>
+                {% endfor %}
+            </select></pre>
+            <pre>Director:             <select name="director">
+                {% for d in director %}
+                    <option value="{{d.id_director}}">{{d.nombre}}</option>
+                {% endfor %}
+                </select></pre>
+
+            <input type="submit" name="opcion" value="Agregar">
+        </form><br><br>
+        <a href="{% url 'crud' %}">Volver</a>
+        <br>
+        <div id="idMensajes">
+            {% if mensaje %}
+            {{mensaje}}
+            {% endif%}
+        </div>
+    </div>
+</body>
+</html>
