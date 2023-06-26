@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <div style=" text-align: center">
+        {% if pelicula %}
+            <h2>Formulario actualizar datos</h2><br>
+
+                <form action="{% 'peliculasUpdate' %}" method="POST">
+                    {% csrf_token %}
+
+                    <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula" value="{{pelicula.nombre_pelicula}}"></pre>
+                    <pre>Genero:             
+                        <select name="genero" id="">
+                            {% for g in genero %}
+                                {% if g.genero == pelicula.id_genero.genero %}
+                                    <option value="{{genero.id_genero}}" selected>{{g.genero}}</option>
+                                {% else %}
+                                    <option value="{{genero.id_genero}}">{{g.genero}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </pre>
+
+                    <input type="submit" name="opcion" value="actualizar">
+
+                </form><br><br>
+            {% endif %}
+        <div id="idMensajes">
+            {% if mensaje %}
+            {{mensaje}}
+            {% endif %}
+        </div>
+        <br><br>
+        <a href="{% url 'crud' %}">Volver</a>
+    </div>
+</body>
+
+</html>

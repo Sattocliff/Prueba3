@@ -38,6 +38,7 @@
                     <td>{{x.id_genero}}</td>
                     <td>{{x.id_director}}</td>
                     <td><a href="{% url 'peliculas_del' pk=x.nombre_pelicula %}">Eliminar</a></td>
+                    <td><a href="{% url 'peliculas_findEdit' pk=x.nombre_pelicula %}">Modificar</a></td>
                 </tr>
             {% endfor %}
         {% endif %}
