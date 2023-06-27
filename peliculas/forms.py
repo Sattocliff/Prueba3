@@ -7,3 +7,4 @@ class GeneroForm(ModelForm):
     class Meta:
         model = Genero
         fields = "__all__"
+

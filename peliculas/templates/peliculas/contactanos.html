@@ -11,13 +11,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" href="{% static 'peliculas/css/bootstrap.css' %}">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'peliculas/css/main.css' %}">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="{% static 'peliculas/js/main.js' %}"></script>
     <script src="{% static 'peliculas/js/unlocked.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <body>
 
@@ -45,6 +40,12 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'contactanos' %}">Contactanos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'crud' %}">Crud Peliculas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'crud_generos' %}">Crud Generos</a>
                                 </li>
                             </ul>
                             <form class="d-flex" role="search">

@@ -43,12 +43,16 @@ def peliculasAdd(request):
         nombrePelicula=request.POST["nombre_pelicula"]
         genero=request.POST["genero"]
         director=request.POST["director"]
+        precio=request.POST["precio"]
+        foto=request.POST["imagen"]
         activo="1"
         objGenero=Genero.objects.get(id_genero = genero)
         objDirector=Director.objects.get(id_director = director)
         obj=Pelicula.objects.create(nombre_pelicula=nombrePelicula,
                             id_genero=objGenero,
                             id_director=objDirector,
+                            imagen=foto,
+                            precio=precio,
                             activo=1)
         obj.save()
         context={'mensaje':"Ok, datos grabados..."}
@@ -79,10 +83,10 @@ def peliculas_findEdit(request,pk):
     if pk != "":
         pelicula = Pelicula.objects.get(nombre_pelicula=pk)
         genero = Genero.objects.all()
+        director = Director.objects.all()
+        print(type(pelicula.id_director.nombre),(pelicula.id_genero.genero))
 
-        print(type(pelicula.id_genero.genero))
-
-        context={'pelicula':pelicula, 'genero':genero}
+        context={'pelicula':pelicula, 'genero':genero, 'director':director}
         if pelicula:
             return render(request, 'peliculas/peliculas_edit.html', context)
         else:
