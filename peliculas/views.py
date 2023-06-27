@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Pelicula, Genero, Director
+from .models import Pelicula, Genero, Director, Carro
 
 from .forms import GeneroForm
 # Create your views here.
@@ -15,6 +15,18 @@ def contactanos(request):
     peliculas= Pelicula.objects.all()
     context={"peliculas":peliculas}
     return render(request, 'peliculas/contactanos.html', context)
+
+def carrito(request):
+    carritos= Carro.objects.all()
+    context={"carritos":carritos}
+    return render(request, 'peliculas/carrito.html', context)
+
+def calcular(request):
+    carritos = Carro.objects.all()
+    total = Carro.calcular_total()
+    return render(request, 'carrito.html', {'carritos': carritos, 'total': total})
+
+
 
 def crud(request):
     peliculas = Pelicula.objects.all()
