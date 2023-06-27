@@ -47,12 +47,10 @@ $(document).ready(function() {
   $('#formulario').submit(function(event) {
     event.preventDefault();
     if(validacioncita()!= ""){
-      swal("Error de Formulario", validacioncita(), "error");
+      new swal("Error de Formulario", validacioncita(), "error");
     }else{
-      swal("Envio Correceto", "Nos pondremos en contacto con usted", "success");
-  }
-    
-    
+      new swal("Envio Correcto", "Nos pondremos en contacto con usted", "success");
+    }
   });
 
   function validacioncita(){
