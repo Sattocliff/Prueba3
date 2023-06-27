@@ -13,29 +13,40 @@
         {% if pelicula %}
             <h2>Formulario actualizar datos</h2><br>
 
-                <form action="{% 'peliculasUpdate' %}" method="POST">
-                    {% csrf_token %}
+            <form action="{% url 'peliculasUpdate' %}" method="POST">
+                {% csrf_token %}
 
-                    <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula" value="{{pelicula.nombre_pelicula}}"></pre>
-                    <pre>Genero:             
-                        <select name="genero" id="">
-                            {% for g in genero %}
-                                {% if g.genero == pelicula.id_genero.genero %}
-                                    <option value="{{genero.id_genero}}" selected>{{g.genero}}</option>
-                                {% else %}
-                                    <option value="{{genero.id_genero}}">{{g.genero}}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </pre>
+                <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula" value="{{pelicula.nombre_pelicula}}"></pre>
+                <pre>Genero:             
+                    <select name="genero">
+                        {% for g in genero %}
+                            {% if g.genero == pelicula.id_genero.genero %}
+                                <option value="{{g.id_genero}}" selected>{{g.genero}}</option>
+                            {% else %}
+                                <option value="{{g.id_genero}}">{{g.genero}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </pre>
+                <pre>Director:             
+                    <select name="director">
+                        {% for d in director %}
+                            {% if d.director == pelicula.id_director.nombre %}
+                                <option value="{{d.id_director}}" selected>{{d.director}}</option>
+                            {% else %}
+                                <option value="{{d.id_director}}">{{d.director}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </pre>
 
-                    <input type="submit" name="opcion" value="actualizar">
+                <input type="submit" name="opcion" value="actualizar">
 
-                </form><br><br>
-            {% endif %}
+            </form><br><br>
+        {% endif %}
         <div id="idMensajes">
             {% if mensaje %}
-            {{mensaje}}
+                {{mensaje}}
             {% endif %}
         </div>
         <br><br>
