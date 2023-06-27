@@ -9,109 +9,160 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Cuebana</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" type="text/css" 
-    href="{% static 'peliculas/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peliculas/css/bootstrap.css' %}">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'peliculas/css/main.css' %}">
     <script src="{% static 'peliculas/js/main.js' %}"></script>
     <script src="{% static 'peliculas/js/unlocked.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <body>
 
 
     <header>
-        
+
+        <div class="container">
             <div class="container">
-              <div class="container">
-        
+
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="container-fluid menu">
-                      <a class="navbar-brand fw-bold iniciar" href="{% url 'index' %}"><img src="{% static 'static/img/logo.jpg' %}" class="logotip"></a>
-                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                          <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
-                          </li>
-                          <!--item dropdown-->
-                          
-                          <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contactanos' %}">Contactanos</a>
-                          </li>
-                        </ul>
-                        <form class="d-flex" role="search">
-                          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-light" type="submit">Buscar</button>
-                        </form>
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                          <li class="nav-item">
-                            <a class="nav-link"><button onclick="login()" style="background-color: rgba(0, 0, 0, 0.05);">Inicia Sesión</button></a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="carrito.html">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-cart" viewBox="0 0 16 16">
-                                <path
-                                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                              </svg>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                        <a class="navbar-brand fw-bold iniciar" href="index.html"><img
+                                src="{% static 'static/img/logo.jpg' %}" class="logotip"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                                </li>
+                                <!--item dropdown-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contactanos.html">Contactanos</a>
+                                </li>
+                            </ul>
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit">Buscar</button>
+                            </form>
+                            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link"><button onclick="login()"
+                                            style="background-color: rgba(0, 0, 0, 0.05);">Inicia Sesión</button></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="carrito.html">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                  </nav>
-              </div>
+                </nav>
             </div>
+        </div>
     </header>
+
 
     <main>
         <div class="container">
-            <div class="container">
-                <!--carrusel-->
-    
-            </div>
-            <div class="container">
-                <div>
-                    <div class="alert alert-info" role="alert">
-                        <h3>La temperatura es de:<div id="temperature"></div></h3>
-                        <h4>Es un buen día para ver peliculas</h4>
-                      </div>
+            <br>
+
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-white">Ultimas compras</span>
+                        <span class="badge bg-primary rounded-pill">3</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Pelicula de terror</h6>
+                                <small class="text-muted">Suspira</small>
+                            </div>
+                            <span class="text-muted">Providencia</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Pelicula de accion</h6>
+                                <small class="text-muted">John Wick</small>
+                            </div>
+                            <span class="text-muted">Ñuñoa</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Pelicula de anime</h6>
+                                <small class="text-muted">Mi vecino Totoro</small>
+                            </div>
+                            <span class="text-muted">Maipú</span>
+                        </li>
+
+                    </ul>
                 </div>
-            </div>
-            <!--cartitas-->
-            <div class="container">
-                <div class="container" style="padding: 0;">
-                    
-                        <div class="row">
-                            {% for x in peliculas %}
-                            
-                            <div class="card text-black  border-light"
-                                style="width: 20rem; height: 30rem; margin-top: 15px; border-radius: 8%; margin-right: 1px; background-color: rgba(0, 0, 0, 0.05);">
-                                <img src="{% static x.imagen %}" class="card-img-top"
-                                style="margin-top: 18px; width: 300px; height: 200px; border-radius: 15%;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{x.nombre_pelicula}}</h5>
-                                    <p class="card-text">{{x.id_genero}}
-                                    </p>
-                                    {{x.imagen}}
-                                    <a href="chihiro.html"><button type="button" class="btn btn-primary" >Visitar</button></a>
+
+                <div class="col-md-7 col-lg-8">
+                    <h4 style="color: aliceblue;" class="mb-3">Cóntáctanos y un ejecutivo se contactará con usted.</h4>
+
+                    <div class="needs-validation" novalidate="">
+                        <form id="formulario">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="firstName" style="color: aliceblue;" class="form-label">Nombre y
+                                        Apellido</label>
+                                    <input type="text" class="form-control" id="txtnombreyapellido"
+                                        name="txtnombreyapellido" placeholder="Hernan Gonzale" value="" required>
+                                    <div class="invalid-feedback">
+                                    </div>
+                                    <h4 id="r_txtnombre"></h4>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="lastName" style="color: aliceblue;" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="txtemail"
+                                        placeholder="Torbenlizama@gmail.com" value="" required>
+                                    <div class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label style="color: aliceblue;">Numero teléfono</label>
+                                    <input type="text" class="form-control" placeholder="923474519" name="txtNumero"
+                                        id="txtNumero" pattern="[0-9]{9}" maxlength="9" minlength="9" required /><br>
+                                    <label style="color: aliceblue;">Cuidad de residencia</label>
+                                    <select class="form-select" id="cbxciudad" name="cbxciudad" required>
+                                        <option value="0" selected>---Debe Seleccionar una Ciudad</option>
+                                        <optgroup label="Region Metropolitana">
+                                            <option value="1">Santiago</option>
+                                            <option value="2">Maipú</option>
+                                            <option value="3">Providencia</option>
+                                            <option value="4">Pudahuel</option>
+                                            <option value="5">San Bernardo</option>
+                                        </optgroup>
+                                    </select>
+
                                 </div>
                             </div>
-                            
-                            {% endfor %}
-                        
-                        </div>
-                   
+                            <hr class="my-4">
+
+
+                            <input class="w-20 btn btn-primary btn-lg" type="submit" id="btnenviar" value="Enviar">
+                            <input class="w-20 btn btn-primary btn-lg" type="reset" value="Borrar" id="btnreset">
+
+                        </form>
+                    </div>
                 </div>
+
             </div>
         </div>
     </main>
-    
+
 
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <footer>
     <div class="container">
         <div class="container">

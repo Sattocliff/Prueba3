@@ -11,6 +11,11 @@ def index(request):
     context={"peliculas":peliculas}
     return render(request, 'peliculas/index.html', context)
 
+def contactanos(request):
+    peliculas= Pelicula.objects.all()
+    context={"peliculas":peliculas}
+    return render(request, 'peliculas/contactanos.html', context)
+
 def crud(request):
     peliculas = Pelicula.objects.all()
     context = {'peliculas' : peliculas}
