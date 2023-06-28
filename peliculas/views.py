@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import Pelicula, Genero, Director, Carro
 
 from .forms import GeneroForm
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 
@@ -44,14 +45,19 @@ def peliculasAdd(request):
         genero=request.POST["genero"]
         director=request.POST["director"]
         precio=request.POST["precio"]
-        foto=request.POST["imagen"]
+        imagen=request.FILES["imagen"]
+
+        fs = FileSystemStorage()
+        filename = fs.save(imagen.name, imagen)
+        uploaded_file_url = fs.url(filename)
+
         activo="1"
         objGenero=Genero.objects.get(id_genero = genero)
         objDirector=Director.objects.get(id_director = director)
         obj=Pelicula.objects.create(nombre_pelicula=nombrePelicula,
                             id_genero=objGenero,
                             id_director=objDirector,
-                            imagen=foto,
+                            imagen=uploaded_file_url,
                             precio=precio,
                             activo=1)
         obj.save()
@@ -84,7 +90,6 @@ def peliculas_findEdit(request,pk):
         pelicula = Pelicula.objects.get(nombre_pelicula=pk)
         genero = Genero.objects.all()
         director = Director.objects.all()
-        print(type(pelicula.id_director.nombre),(pelicula.id_genero.genero))
 
         context={'pelicula':pelicula, 'genero':genero, 'director':director}
         if pelicula:
@@ -98,14 +103,15 @@ def peliculasUpdate(request):
     if request.method == "POST":
         nombrePelicula=request.POST["nombre_pelicula"]
         genero=request.POST["genero"]
+        director=request.POST["director"]
         
-        activo="1"
         objGenero=Genero.objects.get(id_genero = genero)
-        
+        objDirector=Director.objects.get(id_director = director)
 
         pelicula = Pelicula()
         pelicula.nombre_pelicula=nombrePelicula
         pelicula.id_genero=objGenero
+        pelicula.id_director=objDirector
         
         pelicula.activo=1
         pelicula.save()

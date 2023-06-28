@@ -21,7 +21,7 @@ class Pelicula(models.Model):
     nombre_pelicula = models.CharField(primary_key=True, max_length=30)
     id_genero = models.ForeignKey('Genero',on_delete=models.CASCADE, db_column='idGenero')
     id_director = models.ForeignKey('Director',on_delete=models.CASCADE, db_column='idDirector')
-    imagen = models.ImageField(upload_to="static/img", null=True)
+    imagen = models.ImageField(upload_to="media", null=True)
     precio = models.IntegerField()
     activo = models.IntegerField()
     

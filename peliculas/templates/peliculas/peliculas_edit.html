@@ -96,12 +96,12 @@
                     </select>
                 </pre>
                 <pre>Director:             
-                    <select name="nombre">
-                        {% for d in nombre %}
+                    <select name="director">
+                        {% for d in director %}
                             {% if d.nombre == pelicula.id_director.nombre %}
-                                <option value="{{d.id_director}}" selected>{{d.director}}</option>
+                                <option value="{{d.id_director}}" selected>{{d.nombre}}</option>
                             {% else %}
-                                <option value="{{d.id_director}}">{{d.director}}</option>
+                                <option value="{{d.id_director}}">{{d.nombre}}</option>
                             {% endif %}
                         {% endfor %}
                     </select>

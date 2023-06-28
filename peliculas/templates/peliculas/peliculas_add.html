@@ -78,7 +78,7 @@
         <div style=" text-align: center;">
             <h2>Formulario CRUD para peliculas</h2><br>
 
-            <form action="peliculasAdd" method="POST">
+            <form action="peliculasAdd" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula"></pre>
