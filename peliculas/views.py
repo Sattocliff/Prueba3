@@ -104,15 +104,17 @@ def peliculasUpdate(request):
         nombrePelicula=request.POST["nombre_pelicula"]
         genero=request.POST["genero"]
         director=request.POST["director"]
-        
+        precio=request.POST["precio"]
         objGenero=Genero.objects.get(id_genero = genero)
         objDirector=Director.objects.get(id_director = director)
+        imagen=request.POST["imagen"]
 
         pelicula = Pelicula()
         pelicula.nombre_pelicula=nombrePelicula
         pelicula.id_genero=objGenero
         pelicula.id_director=objDirector
-        
+        pelicula.precio=precio
+        pelicula.imagen=imagen
         pelicula.activo=1
         pelicula.save()
         generos=Genero.objects.all()
