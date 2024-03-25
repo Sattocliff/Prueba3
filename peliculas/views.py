@@ -4,12 +4,23 @@ from .models import Pelicula, Genero, Director, Carro
 
 from .forms import GeneroForm
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
+from django.shortcuts import redirect
 # Create your views here.
 
 
 def index(request):
     peliculas= Pelicula.objects.all()
     context={"peliculas":peliculas}
+    queryset = request.GET.get("pelicula_buscada")
+
+    if queryset:
+        pelicula = Pelicula.objects.filter(
+            Q(nombre_pelicula__icontains = queryset)
+        ).first()
+        request.session['id_pelicula'] = pelicula.nombre_pelicula
+        return redirect(detalle_pelicula)
+    
     return render(request, 'peliculas/index.html', context)
 
 def contactanos(request):
@@ -27,7 +38,11 @@ def calcular(request):
     total = Carro.calcular_total()
     return render(request, 'carrito.html', {'carritos': carritos, 'total': total})
 
-
+def detalle_pelicula(request):
+    pelicula = Pelicula.objects.filter(
+        Q(nombre_pelicula__icontains = request.session['id_pelicula'])
+    ).first()
+    return render(request, 'peliculas/detalle_pelicula.html', {'pelicula': pelicula })
 
 def crud(request):
     peliculas = Pelicula.objects.all()
@@ -44,6 +59,7 @@ def peliculasAdd(request):
         nombrePelicula=request.POST["nombre_pelicula"]
         genero=request.POST["genero"]
         director=request.POST["director"]
+        descripcion=request.POST["descripcion"]
         precio=request.POST["precio"]
         imagen=request.FILES["imagen"]
 
@@ -57,6 +73,7 @@ def peliculasAdd(request):
         obj=Pelicula.objects.create(nombre_pelicula=nombrePelicula,
                             id_genero=objGenero,
                             id_director=objDirector,
+                            descripcion=descripcion,
                             imagen=uploaded_file_url,
                             precio=precio,
                             activo=1)

@@ -15,13 +15,9 @@
     <script src="{% static 'peliculas/js/unlocked.js' %}"></script>
 
 <body>
-
-
     <header>
-
         <div class="container">
             <div class="container">
-
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="container-fluid menu">
                         <a class="navbar-brand fw-bold iniciar" href="{% url 'index' %}"><img
@@ -48,7 +44,7 @@
                                     <a class="nav-link" href="{% url 'crud_generos' %}">Crud Generos</a>
                                 </li>
                             </ul>
-                            <form class="d-flex" role="search">
+                            <!--<form class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-light" type="submit">Buscar</button>
                             </form>
@@ -66,7 +62,7 @@
                                         </svg>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </nav>
@@ -77,18 +73,17 @@
     <body>
         <div class="container">
             <div class="container">
-                <h1>Editar Generos</h1><br>
-                <br>
-                <button type="button">
-                    <a href="{% url 'generosAdd' %}">Agregar</a>
-                </button>
+                <h2>Generos</h2><br>
+                <br/>
+                
+                <a class="btn btn-primary" role="button" href="{% url 'generosAdd' %}">Agregar</a>
 
                 <div id="idMensajes">
                     {% if mensaje %}
                     {{mensaje}}
                     {% endif %}
                 </div>
-                <table class="table table-dark table-striped">
+                <table class="table table-striped">
                     {% if generos %}
                     <th>Genero</th>
                     <th>Eliminar</th>

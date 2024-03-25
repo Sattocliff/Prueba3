@@ -1,0 +1,66 @@
+{% load static %}
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuebana</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="{% static 'peliculas/css/bootstrap.css' %}">
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'peliculas/css/main.css' %}">
+    <script src="{% static 'peliculas/js/main.js' %}"></script>
+    <script src="{% static 'peliculas/js/unlocked.js' %}"></script>
+
+<body>
+    <header>
+
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid menu">
+                    <a class="navbar-brand fw-bold iniciar" href="{% url 'index' %}"><img
+                            src="{% static 'logo.jpg' %}" class="logotip"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                            </li>
+                            <!--item dropdown-->
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contactanos' %}">Contactanos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'crud' %}">Crud Peliculas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'crud_generos' %}">Crud Generos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ pelicula.imagen }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title">{{pelicula.nombre_pelicula}}</h2>
+                        <p>{{pelicula.id_genero}}</p>
+                        <div class="descripcion"><p>{{pelicula.descripcion}}</p></div>
+                        <p>{{pelicula.id_director}}</p>
+                        <p class="card-text">Precio: ${{pelicula.precio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

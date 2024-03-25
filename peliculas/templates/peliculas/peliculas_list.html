@@ -48,7 +48,7 @@
                                     <a class="nav-link" href="{% url 'crud_generos' %}">Crud Generos</a>
                                 </li>
                             </ul>
-                            <form class="d-flex" role="search">
+                            <!--<form class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-light" type="submit">Buscar</button>
                             </form>
@@ -66,7 +66,7 @@
                                         </svg>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </nav>
@@ -78,15 +78,12 @@
 
         <div class="container">
             <div class="container">
-                <h1>
-                    Editar Datos de las peliculas
-                </h1>
-                <br>
-                <br>
+                <h2>
+                    Películas
+                </h2>
+                <br/>
 
-                <button type="button">
-                    <a href="{% url 'peliculasAdd' %}">Agregar</a>
-                </button>
+                <a class="btn btn-primary" role="button" href="{% url 'peliculasAdd' %}">Agregar</a>
 
                 <div id="idMensajes">
                     {% if mensaje %}
@@ -94,11 +91,11 @@
                     {% endif %}
                 </div>
 
-                <table class="table table-dark table-striped">
+                <table class="table table-striped">
                     {% if peliculas %}
-                    <th>nombre_pelicula</th>
-                    <th>id_genero</th>
-                    <th>id_director</th>
+                    <th>Nombre</th>
+                    <th>Genero</th>
+                    <th>Director</th>
                     <th>Eliminar</th>
                     <th>Modificar</th>
                     {% for x in peliculas %}

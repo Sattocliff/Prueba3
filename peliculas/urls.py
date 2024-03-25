@@ -6,7 +6,7 @@ from django.conf import settings
 
 
 urlpatterns=[
-    path('index', views.index, name='index'),
+    path('', views.index, name='index'),
     path('contactanos', views.contactanos, name='contactanos'),
     path('carrito', views.carrito, name='carrito'),
     path('crud', views.crud, name='crud'),
@@ -14,7 +14,7 @@ urlpatterns=[
     path('peliculas_del/<str:pk>', views.peliculas_del, name='peliculas_del'),
     path('peliculas_findEdit/<str:pk>', views.peliculas_findEdit, name='peliculas_findEdit'),
     path('peliculasUpdate', views.peliculasUpdate, name='peliculasUpdate'),
-    
+    path('detalle_pelicula', views.detalle_pelicula, name='detalle_pelicula'),
 
     path('crud_generos', views.crud_generos, name='crud_generos'),
     path('generosAdd', views.generosAdd, name='generosAdd'),

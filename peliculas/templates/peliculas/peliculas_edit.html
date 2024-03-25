@@ -48,7 +48,7 @@
                                     <a class="nav-link" href="{% url 'crud_generos' %}">Crud Generos</a>
                                 </li>
                             </ul>
-                            <form class="d-flex" role="search">
+                            <!--<form class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-light" type="submit">Buscar</button>
                             </form>
@@ -66,7 +66,7 @@
                                         </svg>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </nav>
@@ -76,14 +76,18 @@
 
 
     <body>
-        <div style=" text-align: center">
+        <div style=" text-align: center" class="container">
             {% if pelicula %}
             <h2>Formulario actualizar datos</h2><br>
 
             <form action="{% url 'peliculasUpdate' %}" method="POST">
                 {% csrf_token %}
 
-                <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula" value="{{pelicula.nombre_pelicula}}"></pre>
+                <pre>
+                    Nombre: 
+                    <input type="text" name="nombre_pelicula" value="{{pelicula.nombre_pelicula}}">
+                </pre>
+
                 <pre>Genero:             
                     <select name="genero">
                         {% for g in genero %}

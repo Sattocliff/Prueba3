@@ -18,10 +18,11 @@ class Director(models.Model):
         return str(self.nombre)
 
 class Pelicula(models.Model):
-    nombre_pelicula = models.CharField(primary_key=True, max_length=30)
+    nombre_pelicula = models.CharField(primary_key=True, max_length=50)
     id_genero = models.ForeignKey('Genero',on_delete=models.CASCADE, db_column='idGenero')
     id_director = models.ForeignKey('Director',on_delete=models.CASCADE, db_column='idDirector')
     imagen = models.ImageField(upload_to="fotos", null=True)
+    descripcion = models.CharField(max_length=1000, null=True)
     precio = models.IntegerField()
     activo = models.IntegerField()
     

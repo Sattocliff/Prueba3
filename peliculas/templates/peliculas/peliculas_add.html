@@ -75,34 +75,38 @@
     </header>
 
     <body>
-        <div style=" text-align: center;">
-            <h2>Formulario CRUD para peliculas</h2><br>
+        <div class="container">
+            <div class="container">
 
-            <form action="peliculasAdd" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
+                <h2>Formulario CRUD para peliculas</h2><br>
 
-                <pre>Nombre pelicula:    <input type="text" name="nombre_pelicula"></pre>
-                <pre>Genero:             <select name="genero">
+                <form action="peliculasAdd" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <pre>Nombre Pelicula:    <input type="text" name="nombre_pelicula"></pre>
+                    <pre>Genero:             <select name="genero">
                 {% for g in genero %}
                     <option value="{{g.id_genero}}">{{g.genero}}</option>
                 {% endfor %}
             </select></pre>
-                <pre>Director:             <select name="director">
+                    <pre>Director:             <select name="director">
                 {% for d in director %}
                     <option value="{{d.id_director}}">{{d.nombre}}</option>
                 {% endfor %}
                 </select></pre>
-                <pre>Precio:              <input type="number" name="precio"></pre>
-                <pre>Imagen:              <input type="file" name="imagen"></pre>
+                    <pre>Descripción:         <textarea name="descripcion">Ingrese aquí su descripción</textarea></pre>
+                    <pre>Precio:              <input type="number" name="precio"></pre>
+                    <pre>Imagen:              <input type="file" name="imagen"></pre>
 
-                <input type="submit" name="opcion" value="Agregar">
-            </form><br><br>
-            <a href="{% url 'peliculasAdd' %}">Volver</a>
-            <br>
-            <div id="idMensajes">
-                {% if mensaje %}
-                {{mensaje}}
-                {% endif%}
+                    <input type="submit" name="opcion" value="Agregar">
+                </form><br><br>
+                <a href="{% url 'peliculasAdd' %}">Volver</a>
+                <br>
+                <div id="idMensajes">
+                    {% if mensaje %}
+                    {{mensaje}}
+                    {% endif%}
+                </div>
             </div>
         </div>
     </body>
