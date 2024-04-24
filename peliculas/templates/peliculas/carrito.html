@@ -74,7 +74,7 @@
                 {% if carritos %}
                 <table class="table table-dark table-striped">
                     <thead>
-                        
+
                         <tr>
                             <th scope="col">Item</th>
                             <th scope="col">Nombre Pelicula</th>
@@ -84,25 +84,23 @@
                     <tbody>
                         {% for carro in carritos %}
                         <tr>
-                            
+
                             <td>{{ carro.id_carro }}</td>
                             <td>{{ carro.nombre_pelicula }}</td>
-                            <td>{{carro.precio_pelicula}}</td>
-                            <td>{{carro.calcular_total}}</td>
+                            <td>{{ carro.precio_pelicula }}</td>
+
+                            <td><a href="{% url 'carroDel' pk=carro.id_carro %}">Eliminar</a></td>
                         </tr>
-                        
+
                         {% endfor %}
-                        <tr>
-                            <th>Total:</th>
-                            <td></td>
-                            <td></td>
-                            <td>{{calcular_total}}</td>
-                        </tr>
+                        
                     </tbody>
+
                 </table>
+                hola {{ carritos.calcular_total }}
                 {% endif %}
-
-
+                
+                
             </div>
 
         </div>

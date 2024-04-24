@@ -33,10 +33,6 @@ def carrito(request):
     context={"carritos":carritos}
     return render(request, 'peliculas/carrito.html', context)
 
-def calcular(request):
-    carritos = Carro.objects.all()
-    total = Carro.calcular_total()
-    return render(request, 'carrito.html', {'carritos': carritos, 'total': total})
 
 def detalle_pelicula(request):
     pelicula = Pelicula.objects.filter(
@@ -49,6 +45,17 @@ def crud(request):
     context = {'peliculas' : peliculas}
     return render(request, 'peliculas/peliculas_list.html', context)
 
+def carroAdd(request):
+    peliculas= Pelicula.objects.all()
+    context={"peliculas":peliculas}
+    if request.method=='POST':
+        nombre_pelicula = request.POST["nombre_pelicula"]
+        print(nombre_pelicula)
+        nombre=Pelicula.objects.get(nombre_pelicula=nombre_pelicula)
+        objeto=Carro.objects.create(nombre_pelicula=nombre)
+        objeto.save()
+        return render(request, 'peliculas/index.html', context)
+    
 def peliculasAdd(request):
     if request.method != 'POST':
         genero=Genero.objects.all()
@@ -81,7 +88,23 @@ def peliculasAdd(request):
         context={'mensaje':"Ok, datos grabados..."}
         return render(request,'peliculas/peliculas_add.html', context)
 
- 
+
+def carroDel(request,pk):
+    context={} 
+    try:
+        pelicula=Carro.objects.get(id_carro=pk)
+        pelicula.delete()
+        print("eliminado")
+        mensaje="Bien, datos eliminados..."
+        carritos= Carro.objects.all()
+        context={"carritos":carritos, 'mensaje': mensaje}
+        return render(request, 'peliculas/carrito.html', context)
+    except:
+        mensaje="Error, pelicula no existe..."
+        print("error eliminar")
+        peliculas= Pelicula.objects.all()
+        context={'peliculas': peliculas, 'mensaje':mensaje}
+        return render(request, 'peliculas/carro.html', context)
     
 def peliculas_del(request,pk):
     context={}
@@ -151,6 +174,7 @@ def crud_generos(request):
     return render(request,"peliculas/generos_list.html",context)
 
 
+
 def generosAdd(request):
     print("Estoy en el controlador de generosAdd...")
     context={}
@@ -161,18 +185,14 @@ def generosAdd(request):
         if form.is_valid:
             print("Es valido, voy a agregar")
             form.save()
-
             #limpiar form
             form=GeneroForm()
-
             context={'mensaje': "Ok, datos grabados...", "form":form}
             return render(request,"peliculas/generos_add.html", context)
     else:
         form = GeneroForm()
         context={'form':form}
         return render(request, 'peliculas/generos_add.html', context)
-    
-
 
 def generos_del(request,pk):
     mensajes=[]

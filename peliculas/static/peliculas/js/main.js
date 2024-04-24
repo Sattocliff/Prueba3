@@ -95,3 +95,7 @@ function alertita(){
       )
 }
 
+function agregar_carrito(){
+
+  window.alert("Producto agregado al carrito");
+}
